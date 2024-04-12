@@ -1,0 +1,32 @@
+{
+  "private": false,
+  "name": "ghostboard-tracker",
+  "description": "",
+  "version": "1.2.1",
+  "author": {
+    "name": "David Burgos",
+    "email": "support+github@ghostboard.io"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10",
+    "npm": ">6"
+  },
+  "scripts": {
+    "prettier": "prettier ./src --write",
+    "build": "grunt build;",
+    "tag-major": "npm version major && npm run push-tag",
+    "tag-minor": "npm version minor && npm run push-tag",
+    "tag-fix": "npm version patch && npm run push-tag",
+    "push-tag": "git push --tags",
+    "deploy": "aws s3 sync public/ s3://t.ghostboard.io --acl public-read --exclude '*.DS_Store*' --profile ghostboard",
+    "download": "aws s3 sync s3://t.ghostboard.io ./public/ --profile ghostboard"
+  },
+  "devDependencies": {
+    "grunt": "1.6.1",
+    "grunt-cli": "1.4.3",
+    "grunt-contrib-clean": "~2.0.1",
+    "grunt-contrib-uglify": "^5.2.2",
+    "prettier": "^3.2.5"
+  }
+}
