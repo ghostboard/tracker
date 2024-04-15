@@ -108,7 +108,7 @@
       var anyIcon = shortcut || icon;
       var favicon = anyIcon ? anyIcon.href : '';
       var locationData = loc || win.location || doc.location;
-      var ghostAPIEnable = ghost && ghost.url && ghost.url.api();
+      var ghostAPIEnable = typeof ghost !== 'undefined' && ghost && ghost.url && ghost.url.api();
       if (ghostAPIEnable) {
         var ghostAPI = ghost.url.api();
         rootURL = ghostAPI.substring(0, ghostAPI.indexOf('/ghost/') + 1);
