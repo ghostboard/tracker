@@ -46,7 +46,7 @@
       API +
       'views/' +
       id +
-      '/heartbeat.gif?t=' +
+      '/heartbeat?t=' +
       t +
       '&e=' +
       encodeURIComponent(e);
@@ -54,7 +54,7 @@
 
   function sendClick(data) {
     var img = new Image();
-    var path = API + BLOG_ID + '/c.gif?';
+    var path = API + 'v2/clicks/'+ BLOG_ID + '?';
     for (var i = 0, total = data.length; i < total; i++) {
       path +=
         (i === 0 ? '' : '&') +
@@ -129,7 +129,7 @@
         F: locationData.origin,
         I: favicon,
         U: locationData.href || doc.url,
-        V: 3,
+        V: 4,
       };
       var referrer = getReferrer();
       if (referrer) {
@@ -151,7 +151,7 @@
         startDate = new Date().getTime();
         visitTime = 0;
         var xhr = getAjax();
-        xhr.open('POST', API + 'v2/views/' + BLOG_ID, true);
+        xhr.open('POST', API + 'v3/views/' + BLOG_ID, true);
         xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
         xhr.onreadystatechange = function () {
           savingVisit = false;
