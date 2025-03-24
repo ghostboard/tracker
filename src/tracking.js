@@ -150,7 +150,7 @@
         visitData.E = metaGenerator.content;
       }
       var startDate = null;
-      var lastHearbeat = null;
+      var lastHeartbeat = null;
       var savingVisit = false;
       var newVisit = function (e) {
         if (visitID || savingVisit) {
@@ -178,10 +178,10 @@
       var heartbeat = function (event, isExit) {
         var now = new Date().getTime();
         var onlyOnce =
-          !lastHearbeat || (lastHearbeat && now - lastHearbeat >= 1000);
+          !lastHeartbeat || (lastHeartbeat && now - lastHeartbeat >= 1000);
         var proceed = visitID && (onlyOnce || isExit);
         if (proceed) {
-          lastHearbeat = now;
+          lastHeartbeat = now;
           sendHeartbeat(visitID, visitTime, event);
         }
       };
