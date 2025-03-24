@@ -37,8 +37,11 @@
     try {
       return new ActiveXObject('Microsoft.XMLHTTP');
     } catch (e) {}
+	  sendImg(API + 'noscript/' + BLOG_ID + '/pixel.gif');
     return false;
   }
+
+	function sendImg(url) { new Image().src = url; }
 
 	var maxScrollPercent = 0;
 	function getScrollPercent() {
@@ -50,30 +53,16 @@
 	}
 
   function sendHeartbeat(id, t, e) {
-    var img = new Image();
-    img.src =
-      API +
-      'views/' +
-      id +
-      '/heartbeat?t=' +
-      t +
-      '&e=' +
-      encodeURIComponent(e) +
-	    '&sp=' + maxScrollPercent;
+	  sendImg(API + 'views/' + id + '/heartbeat?t=' + t + '&e=' + encodeURIComponent(e) + '&sp=' + maxScrollPercent);
   }
 
-  function sendClick(data) {
-    var img = new Image();
-    var path = API + 'v2/clicks/'+ BLOG_ID + '?';
-    for (var i = 0, total = data.length; i < total; i++) {
-      path +=
-        (i === 0 ? '' : '&') +
-        data[i][0] +
-        '=' +
-        encodeURIComponent(data[i][1]);
-    }
-    img.src = path;
-  }
+	function sendClick(data) {
+		var path = API + 'v2/clicks/'+ BLOG_ID + '?';
+		for (var i = 0, total = data.length; i < total; i++) {
+			path += (i === 0 ? '' : '&') + data[i][0] + '=' + encodeURIComponent(data[i][1]);
+		}
+		sendImg(path);
+	}
 
   function getReferrer() {
     var referrer = '';
