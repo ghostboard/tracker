@@ -139,7 +139,7 @@
         F: locationData.origin,
         I: favicon,
         U: locationData.href || doc.url,
-        V: 4,
+        V: 5,
       };
       var referrer = getReferrer();
       if (referrer) {
