@@ -258,14 +258,17 @@
     } catch (e) {}
   }
 
-  function listenToClicks() {
-    var links = doc.getElementsByTagName('a');
-    for (var i = 0; i < links.length; i++) {
-      addEvent(links[i], 'click', function (e) {
-        onLinkClick(e);
-      });
-    }
-  }
+	function listenToClicks() {
+		var links = doc.querySelectorAll('a, img');
+		for (var i = 0; i < links.length; i++) {
+			if (!links[i].dataset.tracked) {
+				links[i].dataset.tracked = "true";
+				addEvent(links[i], 'click', function (e) {
+					onLinkClick(e);
+				});
+			}
+		}
+	}
 
   function onLinkClick(e) {
     if (!e) {
